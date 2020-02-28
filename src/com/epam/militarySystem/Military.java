@@ -1,4 +1,6 @@
-package com.epam.militarysystem;
+package com.epam.militarySystem;
+
+import java.util.List;
 
 public interface Military {
     int getId();
@@ -9,6 +11,6 @@ public interface Military {
 
     String getRank();
 
-    void getAll();
+    List<Military> getAll();
 
 }

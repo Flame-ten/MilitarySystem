@@ -1,4 +1,7 @@
-package com.epam.militarysystem;
+package com.epam.militarySystem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Soldier implements Military {
 
@@ -7,6 +10,15 @@ public class Soldier implements Military {
     private String lastName;
     private String rank;
 
+    @Override
+    public String toString() {
+        return "Soldier(" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", rank='" + rank + '\'' +
+                ')';
+    }
 
     public Soldier(int id, String name, String lastName, String rank) {
         this.id = id;
@@ -14,7 +26,6 @@ public class Soldier implements Military {
         this.lastName = lastName;
         this.rank = rank;
     }
-
 
     @Override
     public int getId() {
@@ -37,8 +48,8 @@ public class Soldier implements Military {
     }
 
     @Override
-    public void getAll() {
-        System.out.println("Id = " + id + "| Name = " + name + "| Last Name = " + lastName + "| SortByPosition = " + rank);
+    public List<Military> getAll() {
+        return new ArrayList<>();
     }
 
 }

@@ -1,6 +1,6 @@
-package com.epam.militarysystem.sort;
+package com.epam.militarySystem.sort;
 
-import com.epam.militarysystem.Military;
+import com.epam.militarySystem.Military;
 
 import java.util.Comparator;
 

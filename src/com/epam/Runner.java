@@ -1,75 +1,60 @@
 package com.epam;
 
-import com.epam.militarysystem.Company;
-import com.epam.militarysystem.Military;
-import com.epam.militarysystem.Soldier;
-import com.epam.militarysystem.sort.Rank;
-import com.epam.militarysystem.sort.SortById;
-import com.epam.militarysystem.sort.SortByLastName;
-import com.epam.militarysystem.sort.SortByName;
+import com.epam.militarySystem.Military;
+import com.epam.militarySystem.Officer;
+import com.epam.militarySystem.Soldier;
+import com.epam.militarySystem.sort.*;
 
 import java.util.List;
-
 
 public class Runner {
     public static void main(String[] args) {
 
-        Soldier general = new Soldier(1, "Ramzan", "Kadyrov", Rank.GENERAL);
+        Officer general = new Officer(1, "Ramzan", "Kadyrov", Rank.GENERAL);
 
-        Soldier secondMajor = new Soldier(3, "Vladimir", "Putin", Rank.MAJOR);
-        Soldier firstMajor = new Soldier(2, "Jack", "Nicholson", Rank.MAJOR);
+        Officer secondMajor = new Officer(3, "Vladimir", "Putin", Rank.MAJOR);
+        Officer firstMajor = new Officer(2, "Jack", "Nicholson", Rank.MAJOR);
 
-        Soldier firstCaptain = new Soldier(4, "Jack", "Sparrow", Rank.CAPTAIN);
-        Soldier secondCaptain = new Soldier(5, "Adam", "Sandler", Rank.CAPTAIN);
+        Officer firstCaptain = new Officer(4, "Jack", "Sparrow", Rank.CAPTAIN);
+        Officer secondCaptain = new Officer(5, "Adam", "Sandler", Rank.CAPTAIN);
 
         Soldier firstPrivate = new Soldier(7, "Eric", "Cartman", Rank.PRIVATE_SOLDIER);
         Soldier secondPrivate = new Soldier(8, "Stephan", "Carry", Rank.PRIVATE_SOLDIER);
         Soldier thirdPrivate = new Soldier(6, "Michael", "Jordan", Rank.PRIVATE_SOLDIER);
         Soldier fourthPrivate = new Soldier(9, "Lebron", "James", Rank.PRIVATE_SOLDIER);
-        Soldier fifthPrivate = new Soldier(10, "Alex", "Hirsh", Rank.PRIVATE_SOLDIER);
+        Soldier fifthPrivate = new Soldier(10, "Alex", "Hearsh", Rank.PRIVATE_SOLDIER);
         Soldier sixthPrivate = new Soldier(11, "Jimmy", "Neutrone", Rank.PRIVATE_SOLDIER);
 
-        Company company = new Company();
-        Company captainSquad = new Company();
-        Company majorSquad = new Company();
-        Company privateSquad = new Company();
+        firstCaptain.addUnit(firstPrivate);
+        firstCaptain.addUnit(secondPrivate);
+        firstCaptain.addUnit(thirdPrivate);
+        secondCaptain.addUnit(fourthPrivate);
+        secondCaptain.addUnit(fifthPrivate);
+        secondCaptain.addUnit(sixthPrivate);
 
-        privateSquad.addUnit(firstPrivate);
-        privateSquad.addUnit(secondPrivate);
-        privateSquad.addUnit(thirdPrivate);
-        privateSquad.addUnit(fourthPrivate);
-        privateSquad.addUnit(fifthPrivate);
-        privateSquad.addUnit(sixthPrivate);
+        firstMajor.addUnit(firstCaptain);
+        secondMajor.addUnit(secondCaptain);
 
-        captainSquad.addUnit(firstCaptain);
-        captainSquad.addUnit(secondCaptain);
-        captainSquad.addUnit(privateSquad);
+        general.addUnit(firstMajor);
+        general.addUnit(secondMajor);
 
-        majorSquad.addUnit(firstMajor);
-        majorSquad.addUnit(secondMajor);
-
-        majorSquad.addUnit(captainSquad);
-
-        company.addUnit(majorSquad);
-        company.addUnit(general);
-
-        List<Military> allMilitary = company.getAll();
+        List<Military> allMilitary = general.getAll();
 
         System.out.println("Sort by ID");
         allMilitary.sort(new SortById());
-        allMilitary.forEach(oneMilitary -> System.out.println(oneMilitary.getId()));
+        allMilitary.forEach(System.out::println);
 
         System.out.println("Sort by Name");
         allMilitary.sort(new SortByName());
-        allMilitary.forEach(oneMilitary -> System.out.println(oneMilitary.getName()));
+        allMilitary.forEach(System.out::println);
 
         System.out.println("Sort by Last Name");
         allMilitary.sort(new SortByLastName());
-        allMilitary.forEach(oneMilitary -> System.out.println(oneMilitary.getLastName()));
+        allMilitary.forEach(System.out::println);
 
         System.out.println("Sort by Rank");
-        allMilitary.sort(new Rank());
-        allMilitary.forEach(oneMilitary -> System.out.println(oneMilitary.getRank()));
+        allMilitary.sort(new SortByRank());
+        allMilitary.forEach(System.out::println);
 
     }
 }
